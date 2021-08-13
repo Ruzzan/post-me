@@ -1,4 +1,17 @@
 
+
+# Post Me
+
+Simple Django Rest Framework + React Frontend CRUD with Authentication.
+
+
+## Features
+
+- CRUD
+- User Authentication
+- Permissions
+
+
 ## Run Locally
 
 Clone the project
