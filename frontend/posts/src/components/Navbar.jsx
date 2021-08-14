@@ -7,7 +7,7 @@ const Navbar = () => {
         <ul className="navbar-nav mx-auto">
         <Link to="/" className="nav-link"> Home </Link>
         <Link to="/create" className="nav-link"> Create </Link>
-        
+        <Link to="/login" className="nav-link"> Login </Link>
         </ul>
         </nav>
     )
