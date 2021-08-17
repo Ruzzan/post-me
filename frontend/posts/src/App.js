@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import PostList from './components/List';
 import CreateForm from './components/Create';
 import Login from './components/Auth/Login';
+import Logout from './components/Auth/Logout';
 import {UserProvider} from './context/UserContext';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <Route path="/" component={PostList} exact/>
     <Route path="/create" component={CreateForm}/>
     <Route path="/login" component={Login} />
+    <Route path="/logout" component={Logout} />
     </UserProvider>
     </Switch>
     </main>
