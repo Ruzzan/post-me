@@ -1,5 +1,6 @@
 import React,{useState,useContext} from 'react';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 import {UserContext} from '../../context/UserContext';
 
 const Login = () => {
@@ -8,13 +9,19 @@ const Login = () => {
 
     const [err,setErr] = useState(false);
 
-    const [user,setUser] = useContext(UserContext);
+    const{ login } = useContext(UserContext); // login dispatcher
+
+    let history = useHistory();
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
     }
     const handlePassword = (e) => {
         setPassword(e.target.value);
+    }
+
+    const handleRedirect = () =>{
+        setTimeout(()=>history.push('/'),2000);
     }
 
     const loginSubmit = (e) => {
@@ -29,15 +36,12 @@ const Login = () => {
         axios.post(url,body,axiosConfig)
         .then((data)=>{
             setErr(false);
-            // console.log(data.data['key'])
-            let key = data.data['key'];
-            let pk = data.data['user']['pk'];
-            let usrname = data.data['user']['username']
-            // console.log(data.data['user']['pk'])
-            let usr = {token:key,pk:pk,username:usrname}
-            setUser(prev=>usr);
-            localStorage.setItem("user",JSON.stringify(usr))
-            console.log(user)
+            login(
+                data.data['key'],
+                data.data['user']['pk'],
+                data.data['user']['username']
+            )
+            handleRedirect();
         })
         .catch((err)=>{
             setErr(true);
