@@ -7,5 +7,8 @@ class Post(models.Model):
     body = models.TextField()
     timestamp = models.DateField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('-id',)
+
     def __str__(self):
         return self.title
