@@ -10,26 +10,33 @@ export const UserContext = createContext(userState);
 const ACTIONS = {
     LOGIN:"login", 
     LOGOUT:'logout',
-    IS_AUTH:"isAuth", // check if authenticated or not
+    AUTHENTICATE_USER:"isAuth", // check if authenticated or not
 }
 
 function reducer(state,action) {
     switch(action.type) {
         case ACTIONS.LOGIN:
             localStorage.setItem("user",JSON.stringify(action.payload))
-            return {...state,isAuthenticated:true};
+            return {
+                user:JSON.parse(localStorage.getItem("user")),
+                isAuthenticated:true
+            };
 
         case ACTIONS.LOGOUT:
             localStorage.clear();
-            console.log(state)
-            return {...state,isAuthenticated:false};
+            return {
+                user:JSON.parse(localStorage.getItem("user")),
+                isAuthenticated:false
+            };
 
-        case ACTIONS.IS_AUTH: // this will check in localStorage and update state
+        case ACTIONS.AUTHENTICATE_USER: // this will check in localStorage and update state
             if(localStorage.getItem("user") !== null) {
-                console.log("called in action")
-                return {...state,isAuthenticated:true}
+                return {
+                    user:JSON.parse(localStorage.getItem("user")),
+                    isAuthenticated:true
+                }
             }
-            return {...state,isAuthenticated:false}
+          //  return {...state,isAuthenticated:false}
         default:
             return state;
     }
@@ -50,15 +57,15 @@ export const UserProvider = ({children}) => {
         dispatch({type:ACTIONS.LOGOUT})
     }
 
-    function isAuth() {
-        dispatch({type:ACTIONS.IS_AUTH})
+    function authenticateUser() {
+        dispatch({type:ACTIONS.AUTHENTICATE_USER})
     }
 
     return (<UserContext.Provider value={{
         user:state,
         login:login,
         logout:logout,
-        isAuth:isAuth,
+        authenticateUser:authenticateUser,
     }}>
             {children}
             </UserContext.Provider>
