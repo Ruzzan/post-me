@@ -11,31 +11,22 @@ const PostList = () => {
     const [previous,setPrevious] = useState('');
 
     const [url, setURL] = useState('http://127.0.0.1:8000/api/');
-    
-    const {user,isAuth} = useContext(UserContext)
-
     let history = useHistory();
+    const {user,authenticateUser} = useContext(UserContext);
 
     useEffect(()=>{
-        const checkUserStatus = () => {
-        isAuth();
-        if(!(user.isAuthenticated)) {
-            history.push('/login')
-        }
-        console.log(user.user.token)
-        console.log("authenticated in list")
-        }
-        checkUserStatus()
-    },[])
-
-    useEffect(()=>{
-            const fetchAPI = async () => {
+        const fetchAPI = async () => {
+            authenticateUser()
+            if(user.isAuthenticated) {
                 const response = await axios.get(url,{
-                headers:{Authorization: 'Token '+user.user.token}
-                });
-                setPosts(response.data.results);
-                setNext(response.data.next);
-                setPrevious(response.data.previous);
+                    headers:{Authorization: 'Token '+user.user.token}
+                    });
+                    setPosts(response.data.results);
+                    setNext(response.data.next);
+                    setPrevious(response.data.previous);
+            } else {
+                history.push('/login')
+            }
         }
         fetchAPI();   
     },[url]);
