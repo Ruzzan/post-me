@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 import {UserContext} from '../../context/UserContext';
@@ -7,11 +7,9 @@ const Login = () => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
+    const{ login } = useContext(UserContext);
+
     const [err,setErr] = useState(false);
-
-    const{ login } = useContext(UserContext); // login dispatcher
-
-    let history = useHistory();
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -20,8 +18,9 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
+    let history = useHistory();
     const handleRedirect = () =>{
-        setTimeout(()=>history.push('/'),2000);
+        setTimeout(()=>history.push('/'),1000);
     }
 
     const loginSubmit = (e) => {
@@ -41,8 +40,8 @@ const Login = () => {
                 data.data['user']['pk'],
                 data.data['user']['username']
             )
-            handleRedirect();
         })
+        .then(()=>handleRedirect())
         .catch((err)=>{
             setErr(true);
         })
