@@ -9,6 +9,7 @@ const CreateForm = () => {
     const [data,setData] = useState({author:authorID,title:'',body:''})
     const [loading,setLoading] = useState(false);
     const [created,setCreated] = useState(false);
+    
     let history = useHistory();
 
     const url = 'http://127.0.0.1:8000/api/';
