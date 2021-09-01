@@ -8,6 +8,7 @@ import CreateForm from './components/Create';
 import Login from './components/Auth/Login';
 import Logout from './components/Auth/Logout';
 import Signup from './components/Auth/Signup';
+import Profile from './components/Profile';
 import {UserProvider} from './context/UserContext';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <Route path="/login" component={Login} />
     <Route path="/logout" component={Logout} />
     <Route path="/signup" component={Signup} />
+    <Route path="/user" component={Profile} />
     </UserProvider>
     </Switch>
     </main>

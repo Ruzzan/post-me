@@ -21,7 +21,11 @@ const Navbar = () => {
         {user.isAuthenticated === false ? (<>
             <Link to="/login" className="nav-link"> Login </Link> <Link to="/signup" className="nav-link"> Signup </Link>
             </>) :
-            (<Link to="/logout" className="nav-link"> Logout {user.user.username} </Link>)}
+            (<>
+                <Link to="/user" className="nav-link">{user.user.username} </Link>
+                <Link to="/logout" className="nav-link"> Logout </Link>
+            </>)
+        }
         </ul>
         </nav>
     )
