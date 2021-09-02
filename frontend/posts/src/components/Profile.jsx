@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react';
-import {Post} from './Post'; 
+import {Post} from './UserPost'; 
 import { UserContext } from '../context/UserContext';
 import {useHistory} from 'react-router-dom';
 
@@ -34,7 +34,7 @@ const Profile = () => {
         <h3 className="my-2"> My Posts </h3>
 
         {posts.map((post) => {
-            return <Post data={post} key={post.id} />
+            return <Post data={post} key={post.id}/>
         })}
 
         </div>
