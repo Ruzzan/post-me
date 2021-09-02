@@ -3,8 +3,7 @@ from .models import Post
 from .serializers import PostSerializer, UserSerializer
 from .pagination import PostPagination
 from .permissions import IsAuthorOrReadOnly
-from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework import generics, mixins, response, status, viewsets
 from django.contrib.auth import get_user_model
 from dj_rest_auth.views import LoginView
 # Create your views here.
@@ -29,3 +28,15 @@ class UserPostListAPI(generics.ListAPIView):
 
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
+    
+class UserPostAPI(generics.RetrieveAPIView,mixins.DestroyModelMixin):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        return Post.objects.filter(author = self.request.user)
+
+    def delete(self,request,*args,**kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
+
