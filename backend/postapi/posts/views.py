@@ -29,11 +29,14 @@ class UserPostListAPI(generics.ListAPIView):
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
     
-class UserPostAPI(generics.RetrieveAPIView,mixins.DestroyModelMixin):
+class UserPostAPI(generics.RetrieveAPIView,mixins.UpdateModelMixin,mixins.DestroyModelMixin):
     serializer_class = PostSerializer
 
     def get_queryset(self):
         return Post.objects.filter(author = self.request.user)
+
+    def patch(self,request,*args,**kwargs):
+        return self.partial_update(request,*args,**kwargs)
 
     def delete(self,request,*args,**kwargs):
         instance = self.get_object()
