@@ -23,7 +23,8 @@ export const Post = ({data}) => {
         <Link to={"/post/"+data.id}><h5> {data.title} </h5></Link>
         <p className="my-1"> {data.body} </p>
         <small> {data.timestamp} </small>
-        <button className="btn btn-danger btn-sm" disabled={deleted}
+        <Link to={"/edit/"+data.id} className="btn btn-warning btn-sm">Edit</Link>
+        <button className="btn btn-danger btn-sm mx-2" disabled={deleted}
         onClick={()=>deletePost(data.id)}>{ deleted ? 'Deleted' : 'Delete' }</button>
         </div>
     )
