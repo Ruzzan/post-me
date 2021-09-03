@@ -48,7 +48,7 @@ const CreateForm = () => {
         let axiosConfig = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Token ' + 'ccb2cf08d6912c2254b23660e9cdbafa301fea8f'
+                Authorization: 'Token ' + user.user.token
             }
           };
         const response = await axios.post(url,JSON.stringify(data),axiosConfig);
