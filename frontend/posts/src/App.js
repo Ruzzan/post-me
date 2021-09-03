@@ -10,6 +10,7 @@ import Logout from './components/Auth/Logout';
 import Signup from './components/Auth/Signup';
 import Profile from './components/Profile';
 import {UserProvider} from './context/UserContext';
+import EditPost from './components/Edit';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
     <Route path="/login" component={Login} />
     <Route path="/logout" component={Logout} />
     <Route path="/signup" component={Signup} />
+    <Route path="/edit/:postId" component={EditPost} />
     <Route path="/user" component={Profile} />
     </UserProvider>
     </Switch>
