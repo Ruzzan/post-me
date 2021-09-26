@@ -15,7 +15,7 @@ const Signup = () => {
 
     const signupSubmit = async (e) => {
         e.preventDefault();
-        let url = "http://127.0.0.1:8000/api/dj-rest-auth/register/";
+        let url = "https://postme.pythonanywhere.com/api/dj-rest-auth/register/";
         
         let data = {
             username:username,

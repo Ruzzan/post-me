@@ -25,7 +25,7 @@ const Login = () => {
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        let url = "http://127.0.0.1:8000/api/dj-rest-auth/login/";
+        let url = "https://postme.pythonanywhere.com/api/dj-rest-auth/login/";
         let body = JSON.stringify({username:username,password:password});
 
         let axiosConfig = {
