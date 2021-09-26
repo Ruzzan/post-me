@@ -12,7 +12,7 @@ const CreateForm = () => {
     
     let history = useHistory();
 
-    const url = 'http://127.0.0.1:8000/api/';
+    const url = 'https://postme.pythonanywhere.com/api/';
     
     useEffect(()=>{
         const checkUser = () => {

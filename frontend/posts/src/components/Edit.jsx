@@ -18,7 +18,7 @@ const EditPost = () => {
     const [loading,setLoading] = useState(false);
     const [created,setCreated] = useState(false);
 
-    const url = `http://127.0.0.1:8000/api/user/${postId}/`;
+    const url = `https://postme.pythonanywhere.com/api/user/${postId}/`;
     
     useEffect(()=>{
         const fetchPost = async () => {

@@ -10,7 +10,7 @@ const PostList = () => {
     const [next,setNext] = useState('');
     const [previous,setPrevious] = useState('');
 
-    const [url, setURL] = useState('http://127.0.0.1:8000/api/');
+    const [url, setURL] = useState('https://postme.pythonanywhere.com/api/');
     let history = useHistory();
     const {user,authenticateUser} = useContext(UserContext);
 

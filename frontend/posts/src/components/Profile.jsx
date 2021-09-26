@@ -8,7 +8,7 @@ const axios = require('axios').default;
 const Profile = () => {
     const [posts,setPosts] = useState([]);
 
-    const url = 'http://127.0.0.1:8000/api/user/';
+    const url = 'https://postme.pythonanywhere.com/api/user/';
     let history = useHistory();
     const {user,authenticateUser} = useContext(UserContext);
 

@@ -9,7 +9,7 @@ export const Post = ({data}) => {
     const [deleted,setDeleted] = useState(false);
 
     const deletePost = async (id) => {
-        let url = `http://127.0.0.1:8000/api/user/${id}/`;
+        let url = `https://postme.pythonanywhere.com/api/user/${id}/`;
         const response = await axios.delete(url,{
             headers:{Authorization: 'Token '+user.user.token}
         });

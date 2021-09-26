@@ -12,7 +12,7 @@ const PostDetail =  () => {
 
     const {user} = useContext(UserContext);
     let token = user.user.token == null ? "" : user.user.token;
-    const url = `http://127.0.0.1:8000/api/${postId}/`;
+    const url = `https://postme.pythonanywhere.com/api/${postId}/`;
 
     // this will check the user state and fetch data
 
